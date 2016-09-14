@@ -18,6 +18,10 @@ public class BaseActivity extends AppCompatActivity {
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
+    /**
+     * Show a progressDialog to user, give the idea that are something running in background
+     */
+
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
@@ -28,6 +32,9 @@ public class BaseActivity extends AppCompatActivity {
         mProgressDialog.show();
     }
 
+    /**
+     * hide a progressDialog to user, give the idea that what we are doing in background are finish
+     */
     public void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();

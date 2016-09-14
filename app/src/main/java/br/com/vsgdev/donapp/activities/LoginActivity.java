@@ -62,9 +62,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         if (userToken != null && !userToken.equals("")) {
             //TODO: change this toast, lead user to a new activity
 //            Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
-//            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(mainActivity);
-//            finish();
+            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(mainActivity);
+            finish();
 
 
         }
