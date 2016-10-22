@@ -39,9 +39,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     /**
      * UI references.
      */
-    private EditText mEmailView;
-    private EditText mPasswordView;
-    private Button mEmailSignInButton;
+    private EditText edtEmail;
+    private EditText edtPassword;
+    private Button btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,34 +59,21 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         /**
          * if are any user, skip the login screen and go to MainActivity
          * */
+        //TODO: Verificar como checka usuario logado na aplicação
         if (userToken != null && !userToken.equals("")) {
-            //TODO: change this toast, lead user to a new activity
-//            Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
             Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainActivity);
             finish();
-
 
         }
         /**
          * Set up the login form.
          * */
-//        mEmailView = (EditText) findViewById(R.id.email);
-//        mPasswordView = (EditText) findViewById(R.id.password);
-//        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-//                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-//                    attemptLogin();
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
-//
-//        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-//        mEmailSignInButton.setOnClickListener(this);
-//
+        edtEmail = (EditText) findViewById(R.id.edt_login_login);
+        edtPassword = (EditText) findViewById(R.id.edt_password_login);
+        btnSignIn = (Button) findViewById(R.id.btn_login_login);
+        btnSignIn.setOnClickListener(this);
+
     }
 
 
@@ -98,31 +85,31 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     private void attemptLogin() {
 
         // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        edtEmail.setError(null);
+        edtPassword.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String email = edtEmail.getText().toString();
+        String password = edtPassword.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            edtPassword.setError(getString(R.string.error_invalid_password));
+            focusView = edtPassword;
             cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+            edtEmail.setError(getString(R.string.error_field_required));
+            focusView = edtEmail;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+            edtEmail.setError(getString(R.string.error_invalid_email));
+            focusView = edtEmail;
             cancel = true;
         }
 
@@ -151,7 +138,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == mEmailSignInButton.getId())
+        if (v.getId() == btnSignIn.getId())
             attemptLogin();
     }
 
