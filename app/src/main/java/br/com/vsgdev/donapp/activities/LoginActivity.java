@@ -19,12 +19,15 @@ import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.local.UserTokenStorageFactory;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.UserDAO;
+import br.com.vsgdev.donapp.daoImpl.userDAOImpl;
+import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.BackendlessConfig;
 
 
 /**
  * This activity take care about the Login, and registration
- * <p/>
+ * <p>
  * <hr/>
  * Creation Date: 09/08/16 <br/>
  * Update Date: 09/08/16 <br/>
@@ -121,7 +124,27 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgressDialog();
-            login(email, password);
+            //TODO: remove before test
+
+            final User user = new User();
+            user.setEmail(email);
+            user.setPassword(password);
+
+            UserDAO userDAO = new userDAOImpl();
+            showProgressDialog();
+            Backendless.UserService.register(user.getUser());
+            hideProgressDialog();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    showProgressDialog();
+//                    Backendless.UserService.register(user.getUser());
+//                    hideProgressDialog();
+//                }
+//            }
+//            ).start();
+            System.out.println("fim thread");
+            //login(email, password);
         }
     }
 

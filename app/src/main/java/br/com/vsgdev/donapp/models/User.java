@@ -16,6 +16,14 @@ public class User {
         this.backendlessUser = new BackendlessUser();
     }
 
+    public BackendlessUser getUser() {
+        return this.backendlessUser;
+    }
+
+    public void setUser(BackendlessUser backendlessUser) {
+        this.backendlessUser = backendlessUser;
+    }
+
     public String getObjectId() {
         return this.backendlessUser.getObjectId();
     }
