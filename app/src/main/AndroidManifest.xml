@@ -24,6 +24,30 @@
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name=".activities.NewUser"
+            android:label="NewUser">
+            <intent-filter>
+                <data
+                    android:host="callActivity"
+                    android:scheme=".activities.TermOfUse" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.NewUser2">
+
+        </activity>
+        <activity android:name=".activities.NewUser3"></activity>
+        <!--<activity android:name=".activities.ItemDetailsFragment"/>-->
+        <activity android:name=".activities.NewItem1" />
+
+        <activity android:name=".activities.NewItem2" />
+        <activity android:name=".activities.NewItem3" />
     </application>
 
 </manifest>
