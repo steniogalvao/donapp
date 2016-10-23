@@ -16,11 +16,14 @@ import com.backendless.persistence.local.UserTokenStorageFactory;
 import java.math.BigDecimal;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.InstitutionDAO;
 import br.com.vsgdev.donapp.dao.ItemDAO;
 import br.com.vsgdev.donapp.dao.UserDAO;
+import br.com.vsgdev.donapp.daoImpl.InstitutionDAOImpl;
 import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
 import br.com.vsgdev.donapp.daoImpl.UserDAOImpl;
 import br.com.vsgdev.donapp.models.Category;
+import br.com.vsgdev.donapp.models.Institution;
 import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.BackendlessConfig;
@@ -157,29 +160,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //TODO remover apos teste
-//        User user = new User();
-//        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
-//        ItemDAO itemDAO = new ItemDAOImpl();
-//        UserDAO userDAO = new UserDAOImpl();
-//        user = (User) userDAO.loadUser(user);
-//        Category category = new Category(null, "categoria 1", "descricao");
-//        Item item = new Item(null, "serviço 1", "descrição", new BigDecimal(50), 1, true, user.getUser(), category, null);
-//        Object responseItem = itemDAO.createItem(item);
-//        if (responseItem instanceof BackendlessCollection) {
-//            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
-//        } else {
-//            Toast.makeText(this, responseItem.toString(), Toast.LENGTH_LONG).show();
-//        }
-//        Object response = itemDAO.searchItem(null);
-//        if (response instanceof BackendlessCollection) {
-//            BackendlessCollection<Item> itens = (BackendlessCollection<Item>) response;
-//            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
-//        } else {
-//            Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
-//        }
-//        if (v.getId() == btnSignIn.getId())
-//            attemptLogin();
+        InstitutionDAO institutionDAO = new InstitutionDAOImpl();
+        Institution institution = new Institution(null, "name", "decription", null, null);
+        Object object = institutionDAO.createInstitution(institution);
+        if (object instanceof Institution) {
+            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
+        } else {
+
+            Toast.makeText(this, object.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 
     public void login(String username, String password) {
