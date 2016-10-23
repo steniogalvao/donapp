@@ -23,6 +23,53 @@ import br.com.vsgdev.donapp.models.User;
  */
 public class UserDAOImpl implements UserDAO {
 
+    @Override
+    public void logout() {
+        try {
+            AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
+
+                @Override
+                protected Object doInBackground(Object... objects) {
+                    try {
+                        Backendless.UserService.logout();
+                    } catch (BackendlessException e) {
+                        return e.getMessage();
+                    }
+                    return null;
+                }
+
+            };
+            Object response = asyncTask.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public Object login(final User user) {
+        try {
+            AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
+
+                @Override
+                protected Object doInBackground(Object... objects) {
+                    try {
+                        Backendless.UserService.login(user.getEmail(), user.getPassword(), true);
+                    } catch (BackendlessException e) {
+                        return e.getMessage();
+                    }
+                    return null;
+                }
+
+            };
+            Object response = asyncTask.execute(user).get();
+            return response;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public Object createUser(User user) {

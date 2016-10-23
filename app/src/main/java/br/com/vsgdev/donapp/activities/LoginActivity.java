@@ -85,10 +85,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-    public void fazerLogin(View view){
-        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainActivity);
-        finish();
+    public void fazerLogin(View view) {
+        attemptLogin();
     }
 
 
@@ -140,17 +138,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             final User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-
             UserDAO userDAO = new UserDAOImpl();
-            /**
-             * call the class that same a user, returning a object as response, this object can be a User if everything is ok
-             * or a String with a error message if some problem occur
-             * */
-            Object response = userDAO.createUser(user);
-            if (response instanceof User) {
-                Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
+            Object response = userDAO.login(user);
+            if (UserTokenStorageFactory.instance().getStorage().get() != null) {
+                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivity);
+                finish();
             }
         }
     }
@@ -168,15 +161,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        InstitutionDAO institutionDAO = new InstitutionDAOImpl();
-        Institution institution = new Institution(null, "name", "decription", null, null);
-        Object object = institutionDAO.createInstitution(institution);
-        if (object instanceof Institution) {
-            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
-        } else {
 
-            Toast.makeText(this, object.toString(), Toast.LENGTH_LONG).show();
-        }
     }
 
     public void login(String username, String password) {
