@@ -16,11 +16,14 @@ import com.backendless.persistence.local.UserTokenStorageFactory;
 import java.math.BigDecimal;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.InstitutionDAO;
 import br.com.vsgdev.donapp.dao.ItemDAO;
 import br.com.vsgdev.donapp.dao.UserDAO;
+import br.com.vsgdev.donapp.daoImpl.InstitutionDAOImpl;
 import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
 import br.com.vsgdev.donapp.daoImpl.UserDAOImpl;
 import br.com.vsgdev.donapp.models.Category;
+import br.com.vsgdev.donapp.models.Institution;
 import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.BackendlessConfig;
@@ -82,10 +85,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
+<<<<<<< HEAD
     public void login(View view){
         Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         finish();
+=======
+    public void fazerLogin(View view) {
+        attemptLogin();
+>>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
 
@@ -137,17 +145,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             final User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-
             UserDAO userDAO = new UserDAOImpl();
-            /**
-             * call the class that same a user, returning a object as response, this object can be a User if everything is ok
-             * or a String with a error message if some problem occur
-             * */
-            Object response = userDAO.createUser(user);
-            if (response instanceof User) {
-                Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
+            Object response = userDAO.login(user);
+            if (UserTokenStorageFactory.instance().getStorage().get() != null) {
+                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivity);
+                finish();
             }
         }
     }
@@ -165,6 +168,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+<<<<<<< HEAD
         //TODO remover apos teste
 //        User user = new User();
 //        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
@@ -188,6 +192,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //        }
 //        if (v.getId() == btnSignIn.getId())
 //            attemptLogin();
+=======
+
+>>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
     public void login(String username, String password) {

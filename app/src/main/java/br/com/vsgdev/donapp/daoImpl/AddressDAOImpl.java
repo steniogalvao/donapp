@@ -3,15 +3,14 @@ package br.com.vsgdev.donapp.daoImpl;
 import android.os.AsyncTask;
 
 import com.backendless.Backendless;
-import com.backendless.BackendlessUser;
+import com.backendless.BackendlessCollection;
 import com.backendless.exceptions.BackendlessException;
 
-
-import br.com.vsgdev.donapp.dao.UserDAO;
-import br.com.vsgdev.donapp.models.User;
+import br.com.vsgdev.donapp.dao.AddressDAO;
+import br.com.vsgdev.donapp.models.Address;
 
 /**
- * Implementantio of {@link UserDAO}, responsable to interact with Backendless API
+ * Implementantio of {@link AddressDAO}, responsable to interact with Backendless API
  * <p>
  * <hr/>
  * Creation Date: 22/10/16 <br/>
@@ -21,49 +20,27 @@ import br.com.vsgdev.donapp.models.User;
  * @author Stênio Galvão
  * @version 1.0.0
  */
-public class UserDAOImpl implements UserDAO {
+public class AddressDAOImpl implements AddressDAO {
+
 
     @Override
-    public void logout() {
+    public Object createAddress(Address address) {
         try {
             AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
+                    Address savedAddress = new Address();
                     try {
-                        Backendless.UserService.logout();
+                        savedAddress = Backendless.Persistence.of(Address.class).save((Address) objects[0]);
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return null;
+                    return savedAddress;
                 }
 
             };
-            Object response = asyncTask.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    @Override
-    public Object login(final User user) {
-        try {
-            AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
-
-                @Override
-                protected Object doInBackground(Object... objects) {
-                    try {
-                        Backendless.UserService.login(user.getEmail(), user.getPassword(), true);
-                    } catch (BackendlessException e) {
-                        return e.getMessage();
-                    }
-                    return null;
-                }
-
-            };
-            Object response = asyncTask.execute(user).get();
+            Object response = asyncTask.execute(address).get();
             return response;
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,24 +49,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Object createUser(User user) {
+    public Object loadAddress(Address address) {
         try {
             AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    User savedUser = new User();
+                    Address address = new Address();
                     try {
-                        savedUser.setUser(
-                                Backendless.UserService.register(((User) (objects[0])).getUser()));
+                        address = Backendless.Persistence.of(Address.class).findById(((Address) objects[0]).getObjectId());
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return savedUser;
+                    return address;
                 }
 
             };
-            Object response = asyncTask.execute(user).get();
+            Object response = asyncTask.execute(address).get();
             return response;
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,23 +74,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Object loadUser(User user) {
+    public Object searchAddress(Address address) {
         try {
             AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    User user = new User();
+                    BackendlessCollection<Address> itens;
                     try {
-                        user.setUser(Backendless.UserService.findById(((User) objects[0]).getObjectId()));
+                        itens = Backendless.Persistence.of(Address.class).find();
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return user;
+                    return itens;
                 }
 
             };
-            Object response = asyncTask.execute(user).get();
+            Object response = asyncTask.execute(address).get();
             return response;
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,28 +99,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Object searchUser(User user) {
-        return null;
-    }
-
-    @Override
-    public Object updateUser(User user) {
+    public Object updateAddress(Address address) {
         try {
             AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    User user = new User();
+                    Address address = new Address();
                     try {
-                        user.setUser(Backendless.UserService.update(((User) objects[0]).getUser()));
+                        address = Backendless.Persistence.of(Address.class).save((Address) objects[0]);
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return user;
+                    return address;
                 }
 
             };
-            Object response = asyncTask.execute(user).get();
+            Object response = asyncTask.execute(address).get();
             return response;
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,24 +124,23 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Object deleteUser(User user) {
+    public Object deleteAddress(Address address) {
         try {
             AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    User user = (User) objects[0];
-                    Object result;
+                    Object object;
                     try {
-                        result = Backendless.Persistence.of(BackendlessUser.class).remove(user.getUser());
+                        object = Backendless.Persistence.of(Address.class).remove((Address) objects[0]);
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return result;
+                    return object;
                 }
 
             };
-            Object response = asyncTask.execute(user).get();
+            Object response = asyncTask.execute(address).get();
             return response;
         } catch (Exception e) {
             e.printStackTrace();

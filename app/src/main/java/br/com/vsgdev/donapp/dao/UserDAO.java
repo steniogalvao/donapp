@@ -17,6 +17,14 @@ import br.com.vsgdev.donapp.models.User;
  */
 public interface UserDAO {
 
+    void logout();
+    /**
+     * Method that log in a user in the system
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
+    Object login(User user);
     /**
      * Method that create a user in the Backendless
      *
