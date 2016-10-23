@@ -20,4 +20,11 @@ public class ValidateUtils {
             editText.setError(erroMessage);
         return editText;
     }
+
+    public static boolean checkDigit(String string) {
+        String pattern = "\\d";
+        if (string.matches(pattern))
+            return true;
+        return false;
+    }
 }

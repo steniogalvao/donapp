@@ -3,6 +3,7 @@ package br.com.vsgdev.donapp.models;
 import com.backendless.BackendlessUser;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * This class represent a user in the system
@@ -28,7 +29,7 @@ public class User {
         return this.backendlessUser.getObjectId();
     }
 
-    public void setObjectId(int objectId) {
+    public void setObjectId(String objectId) {
         backendlessUser.setProperty("objectId", objectId);
     }
 
