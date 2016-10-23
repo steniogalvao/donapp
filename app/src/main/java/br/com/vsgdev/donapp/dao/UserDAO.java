@@ -1,5 +1,7 @@
 package br.com.vsgdev.donapp.dao;
 
+import android.content.Context;
+
 import br.com.vsgdev.donapp.models.User;
 
 /**
@@ -15,7 +17,7 @@ import br.com.vsgdev.donapp.models.User;
  */
 public interface UserDAO {
 
-    User createUser(User user);
+    User createUser(User user, Context context);
 
     User loadUser(User user);
 

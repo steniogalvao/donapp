@@ -27,7 +27,7 @@ import br.com.vsgdev.donapp.utils.BackendlessConfig;
 
 /**
  * This activity take care about the Login, and registration
- * <p>
+ * <p/>
  * <hr/>
  * Creation Date: 09/08/16 <br/>
  * Update Date: 09/08/16 <br/>
@@ -123,7 +123,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgressDialog();
             //TODO: remove before test
 
             final User user = new User();
@@ -132,18 +131,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
             UserDAO userDAO = new userDAOImpl();
             showProgressDialog();
-            Backendless.UserService.register(user.getUser());
+//            userDAO.createUser(user, getApplicationContext());
+            Toast.makeText(this, "deu certo ", Toast.LENGTH_LONG).show();
             hideProgressDialog();
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    showProgressDialog();
-//                    Backendless.UserService.register(user.getUser());
-//                    hideProgressDialog();
-//                }
-//            }
-//            ).start();
-            System.out.println("fim thread");
             //login(email, password);
         }
     }
@@ -166,31 +156,31 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     public void login(String username, String password) {
-        /**
-         * This will call the login service of Backendless
-         * @param String username
-         * @param String password
-         * @param AsyncCallback<BackendlessUser> callback
-         * @param Boolean stayLoggedIn
-         * */
-        Backendless.UserService.login(username, password, new AsyncCallback<BackendlessUser>() {
-
-            public void handleResponse(BackendlessUser user) {
-                //new activity
-                hideProgressDialog();
-//                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(mainActivity);
-//                finish();
-                Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
-            }
-
-            public void handleFault(BackendlessFault fault) {
-                //show some error
-                hideProgressDialog();
-                Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_LONG).show();
-            }
-
-        }, true);
+//        /**
+//         * This will call the login service of Backendless
+//         * @param String username
+//         * @param String password
+//         * @param AsyncCallback<BackendlessUser> callback
+//         * @param Boolean stayLoggedIn
+//         * */
+//        Backendless.UserService.login(username, password, new AsyncCallback<BackendlessUser>() {
+//
+//            public void handleResponse(BackendlessUser user) {
+//                //new activity
+//                hideProgressDialog();
+////                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+////                startActivity(mainActivity);
+////                finish();
+//                Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
+//            }
+//
+//            public void handleFault(BackendlessFault fault) {
+//                //show some error
+//                hideProgressDialog();
+//                Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_LONG).show();
+//            }
+//
+//        }, true);
     }
 }
 

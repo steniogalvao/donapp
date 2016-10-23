@@ -12,6 +12,8 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
 
+import java.util.ArrayList;
+
 import br.com.vsgdev.donapp.R;
 import br.com.vsgdev.donapp.dao.UserDAO;
 import br.com.vsgdev.donapp.models.User;
@@ -53,24 +55,27 @@ public class userDAOImpl implements UserDAO {
             mProgressDialog.dismiss();
         }
     }
+
     @Override
-    public User createUser(User user) throws BackendlessException {
-        user.setUser(Backendless.UserService.register(user.getUser()));
-        AsyncTask asyncTask = new AsyncTask<User, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-            }
+    public User createUser(User user, final Context context) {
+        try {
+            AsyncTask asyncTask = new AsyncTask<Object, Void, User>() {
 
-            @Override
-            protected Void doInBackground(User... users) {
-                return null;
-            }
+                @Override
+                protected User doInBackground(Object... objects) {
+                    User savedUser = new User();
+                    savedUser.setUser(
+                            Backendless.UserService.register(((User) (objects[0])).getUser()));
+                    return savedUser;
+                }
 
-            @Override
-            protected void onPostExecute(Void aVoid) {
-            }
-        };
-        return null;
+            };
+            User savedUser = (User) asyncTask.execute(user).get();
+            return savedUser;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
