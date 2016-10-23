@@ -30,13 +30,13 @@ public class SaleDAOImpl implements SaleDAO {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    Object object;
+                    Sale sale;
                     try {
-                        object = Backendless.Persistence.of(Sale.class).save((Sale) objects[0]);
+                        sale = Backendless.Persistence.of(Sale.class).save((Sale) objects[0]);
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return object;
+                    return sale;
                 }
 
             };
@@ -55,13 +55,13 @@ public class SaleDAOImpl implements SaleDAO {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    Object object;
+                    Sale sale;
                     try {
-                        object = Backendless.Persistence.of(Sale.class).findById(((Sale) objects[0]).getObjectId());
+                        sale = Backendless.Persistence.of(Sale.class).findById(((Sale) objects[0]).getObjectId());
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return object;
+                    return sale;
                 }
 
             };
@@ -105,13 +105,13 @@ public class SaleDAOImpl implements SaleDAO {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    Object object;
+                    Sale sale;
                     try {
-                        object = Backendless.Persistence.of(Sale.class).save((Sale) objects[0]);
+                        sale = Backendless.Persistence.of(Sale.class).save((Sale) objects[0]);
                     } catch (BackendlessException e) {
                         return e.getMessage();
                     }
-                    return object;
+                    return sale;
                 }
 
             };
