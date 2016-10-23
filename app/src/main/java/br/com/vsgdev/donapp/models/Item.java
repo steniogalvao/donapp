@@ -1,5 +1,7 @@
 package br.com.vsgdev.donapp.models;
 
+import com.backendless.BackendlessUser;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,7 +20,7 @@ public class Item {
     private BigDecimal value;
     private int quantity;
     private boolean situation;
-    private User user;
+    private BackendlessUser user;
     private Category category;
     private ArrayList<Institution> institutions = new ArrayList<>();
 
@@ -26,7 +28,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String objectId, String name, String description, BigDecimal value, int quantity, boolean situation, User user, Category category, ArrayList<Institution> institutions) {
+    public Item(String objectId, String name, String description, BigDecimal value, int quantity, boolean situation, BackendlessUser user, Category category, ArrayList<Institution> institutions) {
         this.objectId = objectId;
         this.name = name;
         this.description = description;
@@ -86,11 +88,11 @@ public class Item {
         this.situation = situation;
     }
 
-    public User getUser() {
+    public BackendlessUser getBackendlessUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setBackendlessUser(BackendlessUser user) {
         this.user = user;
     }
 

@@ -3,24 +3,25 @@ package br.com.vsgdev.donapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
-import com.backendless.BackendlessUser;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
+import com.backendless.BackendlessCollection;
 import com.backendless.persistence.local.UserTokenStorageFactory;
 
+import java.math.BigDecimal;
+
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.ItemDAO;
 import br.com.vsgdev.donapp.dao.UserDAO;
-import br.com.vsgdev.donapp.daoImpl.userDAOImpl;
+import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
+import br.com.vsgdev.donapp.daoImpl.UserDAOImpl;
+import br.com.vsgdev.donapp.models.Category;
+import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.BackendlessConfig;
 
@@ -137,7 +138,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             user.setEmail(email);
             user.setPassword(password);
 
-            UserDAO userDAO = new userDAOImpl();
+            UserDAO userDAO = new UserDAOImpl();
             /**
              * call the class that same a user, returning a object as response, this object can be a User if everything is ok
              * or a String with a error message if some problem occur
@@ -164,8 +165,29 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == btnSignIn.getId())
-            attemptLogin();
+        //TODO remover apos teste
+//        User user = new User();
+//        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
+//        ItemDAO itemDAO = new ItemDAOImpl();
+//        UserDAO userDAO = new UserDAOImpl();
+//        user = (User) userDAO.loadUser(user);
+//        Category category = new Category(null, "categoria 1", "descricao");
+//        Item item = new Item(null, "serviço 1", "descrição", new BigDecimal(50), 1, true, user.getUser(), category, null);
+//        Object responseItem = itemDAO.createItem(item);
+//        if (responseItem instanceof BackendlessCollection) {
+//            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
+//        } else {
+//            Toast.makeText(this, responseItem.toString(), Toast.LENGTH_LONG).show();
+//        }
+//        Object response = itemDAO.searchItem(null);
+//        if (response instanceof BackendlessCollection) {
+//            BackendlessCollection<Item> itens = (BackendlessCollection<Item>) response;
+//            Toast.makeText(this, "deu certo", Toast.LENGTH_LONG).show();
+//        } else {
+//            Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
+//        }
+//        if (v.getId() == btnSignIn.getId())
+//            attemptLogin();
     }
 
     public void login(String username, String password) {

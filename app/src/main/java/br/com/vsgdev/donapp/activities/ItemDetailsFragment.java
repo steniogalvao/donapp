@@ -35,7 +35,7 @@ public class ItemDetailsFragment extends Fragment {
         price.setText("R$ " + item.getValue().toString());
         serviceName.setText(item.getName());
         serviceDescription.setText(item.getDescription());
-        userName.setText(item.getUser().getName());
+        userName.setText(item.getBackendlessUser().getProperty("name").toString());
 
     }
 

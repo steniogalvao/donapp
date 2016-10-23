@@ -61,7 +61,7 @@ public class ServicesAdapter extends BaseAdapter {
             holder = (ServiceHolder) rowView.getTag();
         }
         holder.holderDescription.setText(objectsList.get(position).getDescription());
-        holder.holderUser.setText(objectsList.get(position).getUser().getName());
+        holder.holderUser.setText(objectsList.get(position).getBackendlessUser().getProperty("name").toString());
         holder.holderService.setText(objectsList.get(position).getName());
         holder.holderPrice.setText(objectsList.get(position).getValue().toString());
 

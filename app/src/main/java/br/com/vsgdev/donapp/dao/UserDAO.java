@@ -19,17 +19,42 @@ public interface UserDAO {
 
     /**
      * Method that create a user in the Backendless
+     *
      * @param user some system user
-     * @return  An object that can be String or an User
+     * @return An object that can be String or an User
      */
     Object createUser(User user);
 
+    /**
+     * Method that load one user in the Backendless
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
     Object loadUser(User user);
 
+    /**
+     * Method that search a user in the Backendless
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
     Object searchUser(User user);
 
+    /**
+     * Method that update a user in the Backendless
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
     Object updateUser(User user);
 
+    /**
+     * Method that delete a user in the Backendless
+     *
+     * @param user some system user
+     * @return An object that can be String in failure case or an Long in success case
+     */
     Object deleteUser(User user);
 
 
