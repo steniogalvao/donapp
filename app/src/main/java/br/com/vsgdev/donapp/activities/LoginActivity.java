@@ -85,15 +85,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-<<<<<<< HEAD
-    public void login(View view){
+    public void login(View view) {
         Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         finish();
-=======
+    }
     public void fazerLogin(View view) {
         attemptLogin();
->>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
 
@@ -168,7 +166,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-<<<<<<< HEAD
         //TODO remover apos teste
 //        User user = new User();
 //        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
@@ -192,9 +189,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //        }
 //        if (v.getId() == btnSignIn.getId())
 //            attemptLogin();
-=======
-
->>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
     public void login(String username, String password) {
