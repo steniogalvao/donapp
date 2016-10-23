@@ -15,7 +15,20 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:onClick="choosePrice"
         android:text="@string/next" />
+
+    <Button
+        android:id="@+id/btn_next_cancel_item_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="cancel"
+        android:text="@string/cancel" />
 
     <View
         android:id="@+id/v_separator_new_item_2"

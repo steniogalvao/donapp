@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Item {
+public class Item implements Serializable{
 
 
     private String objectId;

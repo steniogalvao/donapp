@@ -15,11 +15,13 @@ import android.widget.SeekBar;
 import java.math.BigDecimal;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.ItemDAO;
+import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
 import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.utils.InstituitionMoneyAdapter;
 
 
-public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListener {
 
     private SeekBar sbToMe, sbCharity;
     private Button btnValueToMe, btnValueCharity, btnTaxValue, btnNext;
@@ -40,7 +42,6 @@ public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListene
         btnValueCharity = (Button) findViewById(R.id.btn_value_charity_new_item_3);
         btnTaxValue = (Button) findViewById(R.id.btn_tax_new_item_3);
         btnNext = (Button) findViewById(R.id.btn_next_new_item_3);
-        btnNext.setOnClickListener(this);
         item = (Item) getIntent().getSerializableExtra("ITEM");
         toMePercentage = 0;
         charityPercentage = 100;
@@ -105,14 +106,24 @@ public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListene
         return value.multiply(percentage).divide(ONE_HUNDRED);
     }
 
-    @Override
-    public void onClick(View view) {
-        /*
+    public void confirmNewItem(View view) {
         if (btnNext.isPressed()) {
-            Intent main = new Intent(this, Main.class);
+            ItemDAO itemDAO = new ItemDAOImpl();
+            Object response = itemDAO.createItem(item);
+            if(response instanceof Item){
+                //ok
+            }else{
+                //erro
+            }
+            Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
             finish();
         }
-        */
+    }
+
+    public void cancel(View view){
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
+        finish();
     }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
  * This class represents a charity institution in the system, that will receive donations
  */
 
-public class Institution {
+public class Institution implements Serializable{
 
     private String objectId;
     private String name;

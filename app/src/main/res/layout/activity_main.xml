@@ -29,7 +29,6 @@
             android:layout_gravity="bottom"
             app:menu="@menu/menu_logout" />
 
-
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

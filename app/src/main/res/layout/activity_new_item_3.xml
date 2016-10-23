@@ -15,6 +15,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:onClick="confirmNewItem"
         android:text="@string/next" />
 
     <View
@@ -112,6 +113,18 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:text="teste" />
+
+    <Button
+        android:id="@+id/btn_tax_cancel_item_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:onClick="cancel"
+        android:text="@string/cancel" />
 
     <TextView
         android:id="@+id/tv_tax_new_item_3"

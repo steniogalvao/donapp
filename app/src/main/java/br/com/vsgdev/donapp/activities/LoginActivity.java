@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-    public void fazerLogin(View view){
+    public void login(View view){
         Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         finish();
@@ -170,7 +170,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
 //        ItemDAO itemDAO = new ItemDAOImpl();
 //        UserDAO userDAO = new UserDAOImpl();
-//        user = (User) userDAO.loadUser(user);
+    //        user = (User) userDAO.loadUser(user);
 //        Category category = new Category(null, "categoria 1", "descricao");
 //        Item item = new Item(null, "serviço 1", "descrição", new BigDecimal(50), 1, true, user.getUser(), category, null);
 //        Object responseItem = itemDAO.createItem(item);

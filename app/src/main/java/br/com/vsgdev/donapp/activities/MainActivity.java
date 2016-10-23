@@ -30,17 +30,9 @@ public class MainActivity extends AppCompatActivity
         fabNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        FloatingActionButton fabMyItens = (FloatingActionButton) findViewById(R.id.fab_my_items_fragment_services);
-        fabMyItens.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent new1Activity = new Intent(getApplicationContext(), NewItem1.class);
+                startActivity(new1Activity);
+                finish();
             }
         });
 
@@ -67,8 +59,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.main, menu);
+        return false;
     }
 
     @Override
@@ -103,9 +95,12 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void fazerLogout(View view){
+
+
+    public void logout(View view){
         Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(loginActivity);
         finish();
     }
+
 }
