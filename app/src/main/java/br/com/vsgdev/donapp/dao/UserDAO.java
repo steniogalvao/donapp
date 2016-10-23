@@ -17,15 +17,20 @@ import br.com.vsgdev.donapp.models.User;
  */
 public interface UserDAO {
 
-    User createUser(User user, Context context);
+    /**
+     * Method that create a user in the Backendless
+     * @param user some system user
+     * @return  An object that can be String or an User
+     */
+    Object createUser(User user);
 
-    User loadUser(User user);
+    Object loadUser(User user);
 
-    User searchUser(User user);
+    Object searchUser(User user);
 
-    User updateUser(User user);
+    Object updateUser(User user);
 
-    User deleteUser(User user);
+    Object deleteUser(User user);
 
 
 }

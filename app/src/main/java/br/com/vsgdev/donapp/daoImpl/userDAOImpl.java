@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.VisibleForTesting;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
@@ -19,8 +20,8 @@ import br.com.vsgdev.donapp.dao.UserDAO;
 import br.com.vsgdev.donapp.models.User;
 
 /**
- * Put the class description here
- * <p/>
+ * Implementantio of {@link UserDAO}, responsable to interact with Backendless API
+ * <p>
  * <hr/>
  * Creation Date: 22/10/16 <br/>
  * Update Date: 22/10/16 <br/>
@@ -30,48 +31,28 @@ import br.com.vsgdev.donapp.models.User;
  * @version 1.0.0
  */
 public class userDAOImpl implements UserDAO {
-    @VisibleForTesting
-    public ProgressDialog mProgressDialog;
 
-    /**
-     * Show a progressDialog to user, give the idea that are something running in background
-     */
-
-    public void showProgressDialog(Context context) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(context);
-            mProgressDialog.setMessage(context.getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    /**
-     * hide a progressDialog to user, give the idea that what we are doing in background are finish
-     */
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
 
     @Override
-    public User createUser(User user, final Context context) {
+    public Object createUser(User user) {
         try {
-            AsyncTask asyncTask = new AsyncTask<Object, Void, User>() {
+            AsyncTask asyncTask = new AsyncTask<Object, Void, Object>() {
 
                 @Override
-                protected User doInBackground(Object... objects) {
+                protected Object doInBackground(Object... objects) {
                     User savedUser = new User();
-                    savedUser.setUser(
-                            Backendless.UserService.register(((User) (objects[0])).getUser()));
+                    try {
+                        savedUser.setUser(
+                                Backendless.UserService.register(((User) (objects[0])).getUser()));
+                    } catch (BackendlessException e) {
+                        return e.getMessage();
+                    }
                     return savedUser;
                 }
 
             };
-            User savedUser = (User) asyncTask.execute(user).get();
-            return savedUser;
+            Object response = asyncTask.execute(user).get();
+            return response;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -79,22 +60,22 @@ public class userDAOImpl implements UserDAO {
     }
 
     @Override
-    public User loadUser(User user) {
+    public Object loadUser(User user) {
         return null;
     }
 
     @Override
-    public User searchUser(User user) {
+    public Object searchUser(User user) {
         return null;
     }
 
     @Override
-    public User updateUser(User user) {
+    public Object updateUser(User user) {
         return null;
     }
 
     @Override
-    public User deleteUser(User user) {
+    public Object deleteUser(User user) {
         return null;
     }
 }

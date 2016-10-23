@@ -130,11 +130,16 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             user.setPassword(password);
 
             UserDAO userDAO = new userDAOImpl();
-            showProgressDialog();
-//            userDAO.createUser(user, getApplicationContext());
-            Toast.makeText(this, "deu certo ", Toast.LENGTH_LONG).show();
-            hideProgressDialog();
-            //login(email, password);
+            /**
+             * call the class that same a user, returning a object as response, this object can be a User if everything is ok
+             * or a String with a error message if some problem occur
+             * */
+            Object response = userDAO.createUser(user);
+            if (response instanceof User) {
+                Toast.makeText(this, "salvo com sucesso", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 
