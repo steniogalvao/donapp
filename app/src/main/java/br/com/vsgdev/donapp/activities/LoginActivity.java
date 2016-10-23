@@ -74,9 +74,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
          * */
         edtEmail = (EditText) findViewById(R.id.edt_login_login);
         edtPassword = (EditText) findViewById(R.id.edt_password_login);
+        /*
         btnSignIn = (Button) findViewById(R.id.btn_login_login);
         btnSignIn.setOnClickListener(this);
+        */
 
+    }
+
+    public void fazerLogin(View view){
+        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainActivity);
+        finish();
     }
 
 
