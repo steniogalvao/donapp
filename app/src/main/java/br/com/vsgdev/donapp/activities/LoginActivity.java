@@ -7,24 +7,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
-import com.backendless.BackendlessCollection;
 import com.backendless.persistence.local.UserTokenStorageFactory;
 
-import java.math.BigDecimal;
-
 import br.com.vsgdev.donapp.R;
-import br.com.vsgdev.donapp.dao.InstitutionDAO;
-import br.com.vsgdev.donapp.dao.ItemDAO;
 import br.com.vsgdev.donapp.dao.UserDAO;
-import br.com.vsgdev.donapp.daoImpl.InstitutionDAOImpl;
-import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
 import br.com.vsgdev.donapp.daoImpl.UserDAOImpl;
-import br.com.vsgdev.donapp.models.Category;
-import br.com.vsgdev.donapp.models.Institution;
-import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.BackendlessConfig;
 
@@ -85,12 +74,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-
     public void login(View view) {
         Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         finish();
     }
+
     public void fazerLogin(View view) {
         attemptLogin();
     }
@@ -191,7 +180,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //        }
 //        if (v.getId() == btnSignIn.getId())
 //            attemptLogin();
-
     }
 
     public void login(String username, String password) {
