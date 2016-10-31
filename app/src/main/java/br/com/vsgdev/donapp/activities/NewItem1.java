@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+
 import java.math.BigDecimal;
 
 import br.com.vsgdev.donapp.models.Item;
@@ -19,7 +22,7 @@ import br.com.vsgdev.donapp.R;
  * Created by Jose Lins on 22/10/2016.
  */
 
-public class NewItem1 extends Activity{
+public class NewItem1 extends Activity {
 
     private Button next;
     private EditText name, description, value, amount;
@@ -58,20 +61,19 @@ public class NewItem1 extends Activity{
     }
 
     private Boolean createItem() {
-
         this.name = ValidateUtils.checkEmptyWithErro(this.name, getApplicationContext(), getString(R.string.this_field_is_required));
         this.description = ValidateUtils.checkEmptyWithErro(this.description, getApplicationContext(), getString(R.string.this_field_is_required));
         this.value = ValidateUtils.checkEmptyWithErro(this.value, getApplicationContext(), getString(R.string.this_field_is_required));
         this.amount = ValidateUtils.checkEmptyWithErro(this.amount, getApplicationContext(), getString(R.string.this_field_is_required));
         if (this.name.getError() == null && this.description.getError() == null && this.value.getError() == null && this.amount.getError() == null) {
-            item = new Item("0", this.name.getText().toString(), this.description.getText().toString(), new BigDecimal(this.value.getText().toString()), Integer.valueOf(this.amount.getText().toString()), true, null, null, null);
+            item = new Item(null, this.name.getText().toString(), this.description.getText().toString(), new BigDecimal(this.value.getText().toString()), Integer.valueOf(this.amount.getText().toString()), true, Backendless.UserService.CurrentUser(), null, null);
             return true;
         } else
             return false;
 
     }
 
-    public void cancel(View view){
+    public void cancel(View view) {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
         finish();

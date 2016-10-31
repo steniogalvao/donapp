@@ -85,15 +85,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     }
 
-<<<<<<< HEAD
-    public void login(View view){
+
+    public void login(View view) {
         Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         finish();
-=======
+    }
     public void fazerLogin(View view) {
         attemptLogin();
->>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
 
@@ -102,6 +101,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+
     private void attemptLogin() {
 
         // Reset errors.
@@ -168,13 +168,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-<<<<<<< HEAD
         //TODO remover apos teste
 //        User user = new User();
 //        user.setObjectId("E8EF1065-7B88-60C2-FFC8-C8B834540E00");
 //        ItemDAO itemDAO = new ItemDAOImpl();
 //        UserDAO userDAO = new UserDAOImpl();
-    //        user = (User) userDAO.loadUser(user);
+        //        user = (User) userDAO.loadUser(user);
 //        Category category = new Category(null, "categoria 1", "descricao");
 //        Item item = new Item(null, "serviço 1", "descrição", new BigDecimal(50), 1, true, user.getUser(), category, null);
 //        Object responseItem = itemDAO.createItem(item);
@@ -192,9 +191,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 //        }
 //        if (v.getId() == btnSignIn.getId())
 //            attemptLogin();
-=======
 
->>>>>>> a18fbe252fb36a894be59bff36e6b70b34e5b3eb
     }
 
     public void login(String username, String password) {

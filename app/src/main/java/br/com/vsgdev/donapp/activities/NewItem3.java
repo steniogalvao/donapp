@@ -7,6 +7,7 @@ package br.com.vsgdev.donapp.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -110,10 +111,10 @@ public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListene
         if (btnNext.isPressed()) {
             ItemDAO itemDAO = new ItemDAOImpl();
             Object response = itemDAO.createItem(item);
-            if(response instanceof Item){
-                //ok
-            }else{
-                //erro
+            if (response instanceof Item) {
+                Snackbar.make(getCurrentFocus(), "Salvo com sucesso", Snackbar.LENGTH_LONG).show();
+            } else {
+                Snackbar.make(getCurrentFocus(), "erro ao salvar", Snackbar.LENGTH_LONG).show();
             }
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
@@ -121,7 +122,7 @@ public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListene
         }
     }
 
-    public void cancel(View view){
+    public void cancel(View view) {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
         finish();

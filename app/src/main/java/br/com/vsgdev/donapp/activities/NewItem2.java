@@ -28,31 +28,17 @@ public class NewItem2 extends Activity {
     private Item item;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item_2);
         item = (Item) getIntent().getSerializableExtra("ITEM");
-        Institution i1 = new Institution("1", "Lar de maria", getString(R.string.grande_600), null, null);
-        Institution i2 = new Institution("2", "APIPA", getString(R.string.grande_600), null, null);
-        Institution i3 = new Institution("3", "Teste1", getString(R.string.grande_600), null, null);
-        Institution i4 = new Institution("4", "teste2", getString(R.string.grande_600), null, null);
-        Institution i5 = new Institution("5", "teste3", getString(R.string.grande_600), null, null);
-        Institution i6 = new Institution("6", "test54", getString(R.string.grande_600), null, null);
-        Institution i7 = new Institution("7", "La", getString(R.string.grande_600), null, null);
-        Institution i8 = new Institution("8", "teste56", getString(R.string.grande_600), null, null);
-        Institution i9 = new Institution("9", "teste7", getString(R.string.grande_600), null, null);
+        Institution i1 = new Institution(null, "Lar de maria", getString(R.string.medio_300), null, null);
+        Institution i2 = new Institution(null, "APIPA", getString(R.string.medio_300), null, null);
+
         ArrayList<Institution> institutions = new ArrayList<>();
         institutions.add(i1);
         institutions.add(i2);
-        institutions.add(i3);
-        institutions.add(i4);
-        institutions.add(i5);
-        institutions.add(i6);
-        institutions.add(i7);
-        institutions.add(i8);
-        institutions.add(i9);
 
         lvInstitutions = (ListView) findViewById(R.id.lv_institutions_new_item_2);
         instituitionChoseAdapter = new InstituitionChoseAdapter(this, institutions);
@@ -74,7 +60,7 @@ public class NewItem2 extends Activity {
         }
     }
 
-    public void cancel(View view){
+    public void cancel(View view) {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
         finish();
