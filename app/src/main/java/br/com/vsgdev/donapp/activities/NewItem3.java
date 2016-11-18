@@ -102,7 +102,7 @@ public class NewItem3 extends Activity implements SeekBar.OnSeekBarChangeListene
         btnValueToMe.setText("R$ " + calcPercentage(item.getValue(), new BigDecimal(sbToMe.getProgress())));
         instituitionMoneyAdapter.setCharityValue(charityValue);
     }
-
+ 
     private BigDecimal calcPercentage(BigDecimal value, BigDecimal percentage) {
         return value.multiply(percentage).divide(ONE_HUNDRED);
     }

@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.ItemDAO;
+import br.com.vsgdev.donapp.daoImpl.ItemDAOImpl;
 import br.com.vsgdev.donapp.models.Item;
 import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.ServicesAdapter;
@@ -39,7 +41,8 @@ public class ServicesFragment extends Fragment implements ListView.OnItemClickLi
         myItems = (FloatingActionButton) view.findViewById(R.id.fab_my_items_fragment_servives);
         myItems.setOnClickListener(this);
         //buscar lista de serviços cadastrados
-
+        ItemDAO itemDAO = new ItemDAOImpl();
+      //  Object response = itemDAO.searchItem(item);
         /*
         User user = new User(0, "Stenio", "Galvao", "steniogalvao@gmail.com", null, null, null, null);
         Item service = new Item(0, "formatacao de computadores é um nome bem longo", "descricao sobre formatacao de computadores bem extensa para saber como vai se comportar se não ouver mais espaço", new BigDecimal(50), 1, true, user, null, null);

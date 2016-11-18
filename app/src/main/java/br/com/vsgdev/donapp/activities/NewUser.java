@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.UserLogedSingleton;
 import br.com.vsgdev.donapp.utils.ValidateUtils;
 
@@ -18,6 +19,7 @@ import br.com.vsgdev.donapp.utils.ValidateUtils;
 public class NewUser extends Activity implements View.OnClickListener {
 
     private Button next;
+    private User user = new User();
     private EditText name, surname;
     private TextView termOfUse;
 
@@ -37,12 +39,11 @@ public class NewUser extends Activity implements View.OnClickListener {
             name = ValidateUtils.checkEmptyWithErro(name, getApplicationContext(), getString(R.string.this_field_is_required));
             surname = ValidateUtils.checkEmptyWithErro(surname, getApplicationContext(), getString(R.string.this_field_is_required));
             if (name.getError() == null && surname.getError() == null) {
-                /*
-                UserLogedSingleton.getInstance().setName(name.getText().toString());
-                UserLogedSingleton.getInstance().setSurrname(surname.getText().toString());
-                Intent next = new Intent(this, NewUser2.class);
-                startActivity(next);
-                */
+                user.setName(name.getText().toString());
+                user.setSurname(surname.getText().toString());
+                Intent newUser2 = new Intent(this, NewUser2.class);
+                newUser2.putExtra("USER", user);
+                startActivity(newUser2);
             }
         }
     }

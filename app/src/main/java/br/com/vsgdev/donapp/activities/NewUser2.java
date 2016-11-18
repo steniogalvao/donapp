@@ -10,14 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessCollection;
+import com.backendless.BackendlessUser;
+
 import br.com.vsgdev.donapp.R;
+import br.com.vsgdev.donapp.dao.UserDAO;
+import br.com.vsgdev.donapp.daoImpl.UserDAOImpl;
+import br.com.vsgdev.donapp.models.User;
 import br.com.vsgdev.donapp.utils.ValidateUtils;
 
 
-public class NewUser2 extends Activity implements View.OnClickListener {
+public class NewUser2 extends BaseActivity {
 
     private Button next;
     private EditText email;
+    private User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,35 +33,22 @@ public class NewUser2 extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_new_user_2);
         email = (EditText) findViewById(R.id.et_email_new_user_2);
         next = (Button) findViewById(R.id.btn_next_new_user_2);
-        next.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (next.isPressed()) {
-            email = ValidateUtils.checkEmptyWithErro(email, getApplicationContext(), getString(R.string.this_field_is_required));
-            if (email.getError() == null) {
-                //WebServiceUtils.validateEmail(email.getText().toString(),this, new EmailHandler(this));
-            }
-        }
-    }
-
-    //Handler para verificar se o email ja foi cadastrado
-    public static class EmailHandler extends Handler {
-        private Boolean valido;
-        private Context context;
-
-        public EmailHandler(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            Bundle bundle = msg.getData();
-            valido = bundle.getBoolean("valido");
-            if (valido) {
-                Intent newUser3 = new Intent(context, NewUser3.class);
-                context.startActivity(newUser3);
+    public void next(View view) {
+        email = ValidateUtils.checkEmptyWithErro(email, getApplicationContext(), getString(R.string.this_field_is_required));
+        if (email.getError() == null) {
+            user.setEmail(email.getText().toString());
+            UserDAO userDAO = new UserDAOImpl();
+            BackendlessCollection response = (BackendlessCollection) userDAO.searchByEmail(user);
+            if (response.getTotalObjects() > 0) {
+                email.setError("Email already exist");
+            } else {
+                user = (User) getIntent().getSerializableExtra("USER");
+                user.setEmail(email.getText().toString());
+                Intent newUser3 = new Intent(getApplicationContext(), NewUser3.class);
+                newUser3.putExtra("USER", user);
+                startActivity(newUser3);
             }
         }
 

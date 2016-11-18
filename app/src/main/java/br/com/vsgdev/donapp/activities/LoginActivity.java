@@ -75,8 +75,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     }
 
     public void login(View view) {
-        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(mainActivity);
+        attemptLogin();
+//        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivity(mainActivity);
+//        finish();
+    }
+
+    public void signup(View view) {
+        Intent newUser = new Intent(getApplicationContext(), NewUser.class);
+        startActivity(newUser);
         finish();
     }
 

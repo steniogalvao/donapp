@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * This class represent a user in the system
  */
-public class User {
+public class User implements Serializable {
 
 
     private BackendlessUser backendlessUser;

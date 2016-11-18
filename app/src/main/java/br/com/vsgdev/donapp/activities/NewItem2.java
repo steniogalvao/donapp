@@ -33,6 +33,7 @@ public class NewItem2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item_2);
         item = (Item) getIntent().getSerializableExtra("ITEM");
+        //TODO: Carregar instituições
         Institution i1 = new Institution(null, "Lar de maria", getString(R.string.medio_300), null, null);
         Institution i2 = new Institution(null, "APIPA", getString(R.string.medio_300), null, null);
 

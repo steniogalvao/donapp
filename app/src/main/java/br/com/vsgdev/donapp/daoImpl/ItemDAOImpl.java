@@ -30,8 +30,7 @@ public class ItemDAOImpl implements ItemDAO {
 
                 @Override
                 protected Object doInBackground(Object... objects) {
-                    Item savedItem  = (Item) objects[0];
-                    savedItem.setDescription("");
+                    Item savedItem = (Item) objects[0];
                     try {
                         savedItem = Backendless.Persistence.of(Item.class).save(savedItem);
                     } catch (BackendlessException e) {

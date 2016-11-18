@@ -26,6 +26,13 @@ public interface UserDAO {
      */
     Object login(User user);
     /**
+     * Method that log in a user in the system with facebook
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
+    Object loginFacebook(User user);
+    /**
      * Method that create a user in the Backendless
      *
      * @param user some system user
@@ -48,6 +55,13 @@ public interface UserDAO {
      * @return An object that can be String or an User
      */
     Object searchUser(User user);
+    /**
+     * Method that search a user in the Backendless by email
+     *
+     * @param user some system user
+     * @return An object that can be String or an User
+     */
+    Object searchByEmail(User user);
 
     /**
      * Method that update a user in the Backendless
